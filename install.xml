@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name>CKEditor v4.22.1 for Opencart 2.3.0.3</name>
+<code>ckeditor_v4_22_1</code>
+<version>2.3</version>
+<author>xxvirusxx</author>
+<link>https://www.free-time-info.ro/</link>
+
+	<file path="admin/controller/catalog/{category,information,product}*.php">
+		<operation>
+			<search><![CDATA[$this->document->addScript('view/javascript/summernote/opencart.js');]]></search>
+			<add position="after"><![CDATA[
+			$this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+			$this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/common/filemanager.php">
+		<operation>
+			<search index="0"><![CDATA[$data['images'][] = array(]]></search>
+			<add position="before"><![CDATA[
+				if (isset($this->request->get['ckeditor'])) {
+					$url .= '&ckeditor=' . $this->request->get['ckeditor'];
+				}
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[// Parent]]></search>
+			<add position="before"><![CDATA[
+		if (isset($this->request->get['ckeditor'])) {
+			$data['ckeditor'] = $this->request->get['ckeditor'];
+		} else {
+			$data['ckeditor'] = '';
+		}
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$data['parent'] =]]></search>
+			<add position="before"><![CDATA[
+		if (isset($this->request->get['ckeditor'])) {
+			$url .= '&ckeditor=' . $this->request->get['ckeditor'];
+		}
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$data['refresh'] =]]></search>
+			<add position="before"><![CDATA[
+		if (isset($this->request->get['ckeditor'])) {
+			$url .= '&ckeditor=' . $this->request->get['ckeditor'];
+		}
+			]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$pagination = new Pagination();]]></search>
+			<add position="before"><![CDATA[
+		if (isset($this->request->get['ckeditor'])) {
+			$url .= '&ckeditor=' . $this->request->get['ckeditor'];
+		}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/extension/module/html.php">
+		<operation>
+			<search><![CDATA[$this->document->addScript('view/javascript/summernote/opencart.js');]]></search>
+			<add position="after"><![CDATA[
+			$this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+			$this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/marketing/contact.php">
+		<operation>
+			<search><![CDATA[$this->document->addScript('view/javascript/summernote/opencart.js');]]></search>
+			<add position="after"><![CDATA[
+			$this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+			$this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/category_form.tpl">
+		<operation>
+			<search><![CDATA[form-control summernote]]></search>
+			<add position="replace"><![CDATA[form-control]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[<script type="text/javascript"><!--]]></search>
+			<add position="before"><![CDATA[
+  <script type="text/javascript"><!--
+<?php foreach ($languages as $language) { ?>
+  ckeditorInit('input-description<?php echo $language['language_id']; ?>', getURLVar('token'));
+<?php } ?>
+//--></script> 
+            ]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/information_form.tpl">
+		<operation>
+			<search><![CDATA[form-control summernote]]></search>
+			<add position="replace"><![CDATA[form-control]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[<script type="text/javascript"><!--]]></search>
+			<add position="before"><![CDATA[
+  <script type="text/javascript"><!--
+<?php foreach ($languages as $language) { ?>
+  ckeditorInit('input-description<?php echo $language['language_id']; ?>', getURLVar('token'));
+<?php } ?>
+//--></script> 
+            ]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/catalog/product_form.tpl">
+		<operation>
+			<search><![CDATA[form-control summernote]]></search>
+			<add position="replace"><![CDATA[form-control]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[<script type="text/javascript"><!--]]></search>
+			<add position="before"><![CDATA[
+  <script type="text/javascript"><!--
+<?php foreach ($languages as $language) { ?>
+  ckeditorInit('input-description<?php echo $language['language_id']; ?>', getURLVar('token'));
+<?php } ?>
+//--></script> 
+            ]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/view/template/extension/module/html.tpl">
+		<operation>
+			<search><![CDATA[form-control summernote]]></search>
+			<add position="replace"><![CDATA[form-control]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[<script type="text/javascript"><!--]]></search>
+			<add position="before"><![CDATA[
+  <script type="text/javascript"><!--
+<?php foreach ($languages as $language) { ?>
+  ckeditorInit('input-description<?php echo $language['language_id']; ?>', getURLVar('token'));
+<?php } ?>
+//--></script> 
+            ]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/marketing/contact.tpl">
+		<operation>
+			<search><![CDATA[form-control summernote]]></search>
+			<add position="replace"><![CDATA[form-control]]></add>
+		</operation>
+		<operation>
+			<search index="0"><![CDATA[<script type="text/javascript"><!--]]></search>
+			<add position="before"><![CDATA[
+  <script type="text/javascript"><!--
+  ckeditorInit('input-message', getURLVar('token'));
+//--></script> 
+            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[function send(url) {]]></search>
+			<add position="after"><![CDATA[
+	$('textarea[name=\'message\']').val(CKEDITOR.instances['input-message'].getData());
+			]]></add>
+		</operation>
+	</file>
+
+	<file path="admin/view/template/common/filemanager.tpl">
+		<operation>
+			<search><![CDATA[$('a.directory').on('click', function(e) {]]></search>
+			<add position="before" offset="2"><![CDATA[
+<?php } else { ?>
+$('#modal-image').on('click', 'a.thumbnail', function(e) {
+	e.preventDefault();
+
+	<?php if ($ckeditor) { ?>
+	var ckeditor_target = '<?php echo $ckeditor; ?>' || null;
+
+	ckeditor_target = ckeditor_target.split( ':' );
+	CKEDITOR.dialog.getCurrent().setValueOf(ckeditor_target[0], ckeditor_target[1], this.getAttribute('href'));
+	<?php } ?>
+
+	$('#modal-image').modal('hide');
+});
+            ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$('#modal-image').load(url);]]></search>
+			<add position="before"><![CDATA[
+	<?php if ($ckeditor) { ?>
+	url += '&ckeditor=' + '<?php echo $ckeditor; ?>';
+	<?php } ?>
+            ]]></add>
+		</operation>
+	</file>
+</modification>
