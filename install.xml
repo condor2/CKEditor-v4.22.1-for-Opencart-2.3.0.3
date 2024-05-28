@@ -17,7 +17,7 @@
 	</file>
 	<file path="admin/controller/common/filemanager.php">
 		<operation>
-			<search index="0"><![CDATA[$data['images'][] = array(]]></search>
+			<search index="0"><![CDATA[$data['images'][] = []]></search>
 			<add position="before"><![CDATA[
 				if (isset($this->request->get['ckeditor'])) {
 					$url .= '&ckeditor=' . $this->request->get['ckeditor'];
